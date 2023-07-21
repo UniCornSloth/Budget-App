@@ -26,7 +26,7 @@ export default function HeadLogin() {
   };
 
   return (
-    <div>
+    <div className="header-bar">
       <h1 className="header">BudgetApp 404</h1>
       <form className="form-login" onSubmit={handleSubmit}>
         <label className="label">Username</label>
