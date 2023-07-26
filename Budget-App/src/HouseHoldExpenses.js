@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-export default function TotalIncome({ amountAfterTax }) {
+export default function HouseHoldExpenses({displayedBalanceAfterBills}) {
+  
   // State variable to hold the item name, price and the list items
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState(0);
@@ -22,7 +23,7 @@ export default function TotalIncome({ amountAfterTax }) {
       };
 
       // Updating the total cost and money left
-      const newTotalCost = totalCost + newItem.price;      
+      const newTotalCost = totalCost + newItem.price;
 
       // Use setItemList to create new array of items
       // Adding new item to the list of items using spread operator
@@ -36,16 +37,16 @@ export default function TotalIncome({ amountAfterTax }) {
   };
 
   // Function to handle the money left after item has been added.
-  const handleMoneyLeft = ()  => {
-    return amountAfterTax - totalCost
-  }
+  const handleMoneyLeft = () => {
+    return displayedBalanceAfterBills - totalCost;
+  };
 
   return (
     <div className="card-income">
       <h1 className="card-tax" type="text">
-        Total Balance: R{amountAfterTax}
+        Balance after bills: R{displayedBalanceAfterBills}
       </h1>
-      <h2 className="h2-card">Total expenses for food</h2>
+      <h2 className="h2-card">Total expenses for food:</h2>
 
       <div className="item-text">
         <label>Item-name:</label>
@@ -56,7 +57,8 @@ export default function TotalIncome({ amountAfterTax }) {
         className="input-item"
         placeholder="Enter item here"
         value={itemName}
-        onChange={(e) => setItemName(e.target.value)}></input>
+        onChange={(e) => setItemName(e.target.value)}
+      />
 
       <div className="item-text">
         <label>Item-price:</label>
@@ -68,7 +70,8 @@ export default function TotalIncome({ amountAfterTax }) {
         placeholder="Enter item price here"
         type="number"
         value={itemPrice}
-        onChange={(e) => setItemPrice(Number(e.target.value))}></input>
+        onChange={(e) => setItemPrice(Number(e.target.value))}
+      />
 
       <button className="button-add" onClick={handleAddItem}>
         ADD

@@ -1,25 +1,36 @@
 import { useState } from "react";
 
 import HeadLogin from "./HeadLogin";
+import IncomeTax from "./IncomeTax";
+import MainIncome from "./MainIncome";
+import BillsExpense from "./BillsExpense";
+import HouseHoldExpenses from "./HouseHoldExpenses";
 import Footer from "./Footer";
-import Income from "./Income";
-import TotalIncome from "./total-Income-expenditures";
-
-// import { useState } from "react";
 
 export default function App() {
-  const [amountAfterTax, setAmountAfterTax] = useState(0);
-  // const [isLogin, setIsLogin] = useState(false)
+  const [displayedMonthlyIncome, setDisplayedMonthlyIncome] = useState("");
+  const [displayedBalanceAfterBills,setDisplayedBalanceAfterBills] = useState("")
+  
 
+  // Callback function to update displayedMonthlyIncome in the App component
+  const updateDisplayedMonthlyIncome = (income) => {
+    setDisplayedMonthlyIncome(parseInt(income)); // Convert income to integer
+  };
+
+  // Callback function to update balance expense
+  const updateDisplayedBalanceAfterBills = (totalBillsAdded) => {
+    setDisplayedBalanceAfterBills(parseInt(totalBillsAdded));
+  };
   return (
     <div>
       <HeadLogin />
-      <Income
-        amountAfterTax={amountAfterTax}
-        setAmountAfterTax={setAmountAfterTax}
-      />
-      {/* {amountAfterTax > 0 ? <TotalIncome amountAfterTax={amountAfterTax} />: <div>Calculate Your Income First</div>}      */}
-      <TotalIncome amountAfterTax={amountAfterTax}/>
+      <IncomeTax />
+      <MainIncome updateDisplayedMonthlyIncome={updateDisplayedMonthlyIncome} />
+      <BillsExpense 
+      displayedMonthlyIncome={displayedMonthlyIncome} 
+      displayedBalanceAfterBills={displayedBalanceAfterBills} 
+      updateDisplayedBalanceAfterBills={updateDisplayedBalanceAfterBills} />
+      <HouseHoldExpenses  displayedBalanceAfterBills={displayedBalanceAfterBills}/>
       <Footer />
     </div>
   );
