@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-export default function Income2({ updateDisplayedMonthlyIncome }) {
+export default function Income2({ updateDspMonthlyIncome }) {
   const [monthlyIncome, setMonthlyIncome] = useState("");
-  const [displayedMonthlyIncome, setDisplayedMonthlyIncome] = useState("");
+  const [dspMonthlyIncome, setDspMonthlyIncome] = useState("");
 
   const handleAddIncome = () => {
     // Convert monthlyIncome to an integer
     const incomeValue = parseInt(monthlyIncome);
     // Update the displayedMonthlyIncome in the local state
-    setDisplayedMonthlyIncome(incomeValue);
+    setDspMonthlyIncome(incomeValue);
     // Pass the incomeValue to the parent component using the callback function
-    updateDisplayedMonthlyIncome(incomeValue);
+    updateDspMonthlyIncome(incomeValue);
     console.log("Income:", incomeValue);
   };
 
@@ -29,7 +29,7 @@ export default function Income2({ updateDisplayedMonthlyIncome }) {
       <button className="button-calculate" onClick={handleAddIncome}>
         Set
       </button>
-      <div>Income: {displayedMonthlyIncome}</div>
+      <div>Income: {dspMonthlyIncome}</div>
     </div>
   );
 }

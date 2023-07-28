@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function HouseHoldExpenses({displayedBalanceAfterBills}) {
+export default function HouseHoldExpenses({dspBalanceAfterBills}) {
   
   // State variable to hold the item name, price and the list items
   const [itemName, setItemName] = useState("");
@@ -38,13 +38,14 @@ export default function HouseHoldExpenses({displayedBalanceAfterBills}) {
 
   // Function to handle the money left after item has been added.
   const handleMoneyLeft = () => {
-    return displayedBalanceAfterBills - totalCost;
+    return dspBalanceAfterBills - totalCost;
   };
+  console.log(handleMoneyLeft())
 
   return (
     <div className="card-income">
       <h1 className="card-tax" type="text">
-        Balance after bills: R{displayedBalanceAfterBills}
+        Balance after bills: R{dspBalanceAfterBills}
       </h1>
       <h2 className="h2-card">Total expenses for food:</h2>
 
@@ -88,6 +89,8 @@ export default function HouseHoldExpenses({displayedBalanceAfterBills}) {
       </div>
       <div className="card-money-left" type="text">
         <p>Total cost: R{totalCost}</p>
+      </div>
+      <div className="card-money-left" type="text">
         <p>Money left: R{handleMoneyLeft()}</p>
       </div>
     </div>

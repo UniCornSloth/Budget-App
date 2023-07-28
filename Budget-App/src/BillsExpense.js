@@ -1,16 +1,13 @@
 import { useState } from "react";
 
 export default function BillsExpense({
-  displayedMonthlyIncome,
-  displayedBalanceAfterBills,
-  updateDisplayedBalanceAfterBills
+  dspMonthlyIncome,
+  dspBalanceAfterBills,
+  updateDspBalanceAfterBills
 }) {
   const [rent, setRent] = useState("");
   const [medical, setMedical] = useState("");
   const [waterElect, setWaterElect] = useState("");
-
-  // Store values in state
-  // const [totalBills, setTotalBills] = useState(0);
 
   // Function to update the total bills whenever any input value changes
   const updateTotalBills = () => {
@@ -26,14 +23,14 @@ export default function BillsExpense({
       expense += parseInt(waterElect);
     }
 
-    updateDisplayedBalanceAfterBills(displayedMonthlyIncome - expense);
+    updateDspBalanceAfterBills(dspMonthlyIncome - expense);
     // setTotalBills(total);
   };
 
   return (
     <div className="card-income">
       <h1 className="card-tax" type="text">
-        Income Balance: R{displayedMonthlyIncome}
+        Income Balance: R{dspMonthlyIncome}
       </h1>
       <h2 className="h2-card">Bills expenses</h2>
 
@@ -83,7 +80,7 @@ export default function BillsExpense({
       </button>
 
       <div className="card-money-left" type="text">
-        <p>Total balance after bills: R{displayedBalanceAfterBills}</p>
+        <p>Total balance after bills: R{dspBalanceAfterBills}</p>
       </div>
     </div>
   );
