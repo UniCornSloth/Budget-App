@@ -7,14 +7,16 @@ export default function Income2({ updateDspMonthlyIncome }) {
   const handleAddIncome = () => {
     // Convert monthlyIncome to an integer
     const incomeValue = parseInt(monthlyIncome);
+
+    if (!incomeValue){
+      alert("Please fill in input")
+    }
     // Update the displayedMonthlyIncome in the local state
     setDspMonthlyIncome(incomeValue);
     // Pass the incomeValue to the parent component using the callback function
     updateDspMonthlyIncome(incomeValue);
     console.log("Income:", incomeValue);
   };
-
-  
 
   return (
     <div className="card-income">

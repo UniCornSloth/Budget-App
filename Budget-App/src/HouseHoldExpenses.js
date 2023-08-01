@@ -1,21 +1,30 @@
 import { useState } from "react";
 
-export default function HouseHoldExpenses({dspBalanceAfterBills}) {
-  
+export default function HouseHoldExpenses({
+  dspBalanceAfterBills,
+  moneyLeft,
+  setMoneyLeft
+}) {
   // State variable to hold the item name, price and the list items
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState(0);
   const [itemList, setItemList] = useState([]);
   // State for price deducted from total balance
   const [totalCost, setTotalCost] = useState(0);
-  // const [moneyLeft, setMoneyLeft] = useState(amountAfterTax);
-  // useEffect(()=> {console.log('Amount after tax:',amountAfterTax)}, [amountAfterTax])
-  // useEffect(()=> {console.log("Money left:",moneyLeft)}, [moneyLeft])
 
   // Function to add entered item to the list creating new array with item name and price
   const handleAddItem = () => {
     // If the input contains item name and item price
-    if (itemName && itemPrice) {
+    if (itemName.trim() && itemPrice > 0) { // Check if item name is not empty and price is greater than 0
+
+      // Check if adding the new item will exceed the balance after bills
+      const newTotalCost = totalCost + itemPrice;
+      if (newTotalCost > dspBalanceAfterBills) {
+        // Show an alert if adding the item exceeds the balance
+        alert("NOT ENOUGH FUNDS.");
+        return;
+      }
+
       // Create a new object with the entered name and price
       const newItem = {
         name: itemName,
@@ -23,24 +32,30 @@ export default function HouseHoldExpenses({dspBalanceAfterBills}) {
       };
 
       // Updating the total cost and money left
-      const newTotalCost = totalCost + newItem.price;
-
-      // Use setItemList to create new array of items
-      // Adding new item to the list of items using spread operator
-      setItemList([...itemList, newItem]);
       setTotalCost(newTotalCost);
+      setMoneyLeft(dspBalanceAfterBills - newTotalCost); // Update the moneyLeft state in App
+
+      // Use setItemList to create a new array of items
+      // Adding the new item to the list of items using the spread operator
+      setItemList([...itemList, newItem]);
 
       // Resetting the item and price input after adding item and price
       setItemName("");
-      setItemPrice("");
+      setItemPrice(0);
+     
+    } else {      
+      alert("Please enter both Item and price")
     }
   };
 
-  // Function to handle the money left after item has been added.
+  // Function to handle money left after item has been added.
   const handleMoneyLeft = () => {
-    return dspBalanceAfterBills - totalCost;
+    const newMoneyLeft = dspBalanceAfterBills - totalCost;
+    setMoneyLeft(newMoneyLeft); // Update the moneyLeft state in App
+    return newMoneyLeft;
   };
-  console.log(handleMoneyLeft())
+
+  console.log("Money Left:", moneyLeft);
 
   return (
     <div className="card-income">

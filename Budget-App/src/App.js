@@ -11,7 +11,8 @@ import Footer from "./Footer";
 export default function App() {
   const [dspMonthlyIncome, setDspMonthlyIncome] = useState("");
   const [dspBalanceAfterBills, setDspBalanceAfterBills] = useState("");
-  const [balanceAfterEssentials, setDspBalanceAfterEssentials] = useState("");
+  const [moneyLeft, setMoneyLeft] = useState("");
+  const [moneyLeftSavings, setMoneyLeftSavings] = useState("");
 
   // Callback function to update displayedMonthlyIncome in the App component
   const updateDspMonthlyIncome = (income) => {
@@ -23,10 +24,7 @@ export default function App() {
     setDspBalanceAfterBills(parseInt(totalBillsAdded));
   };
 
-  const updateBalanceAfterEssentials = (totalMoneyLeft) => {
-    setDspBalanceAfterEssentials(parseInt(totalMoneyLeft));
-    console.log("Money left after bills:",totalMoneyLeft);
-  };
+  // Callback to update balance after bills
 
   return (
     <div>
@@ -44,12 +42,14 @@ export default function App() {
 
       <HouseHoldExpenses
         dspBalanceAfterBills={dspBalanceAfterBills}
-        balanceAfterEssentials={balanceAfterEssentials}
+        moneyLeft={moneyLeft}
+        setMoneyLeft={setMoneyLeft}
       />
 
       <Savings
-      balanceAfterEssentials={balanceAfterEssentials}
-      updateBalanceAfterEssentials={updateBalanceAfterEssentials}
+        moneyLeft={moneyLeft}
+        moneyLeftSavings={moneyLeftSavings}
+        setMoneyLeftSavings={setMoneyLeftSavings}
       />
 
       {/* <EntertainmentExpense /> */}

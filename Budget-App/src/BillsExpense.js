@@ -21,10 +21,13 @@ export default function BillsExpense({
     }
     if (waterElect) {
       expense += parseInt(waterElect);
-    }
+    }if (expense > dspMonthlyIncome){
+      updateDspBalanceAfterBills(0)
+      alert("NOT ENOUGH FUNDS")
+    }else{
 
-    updateDspBalanceAfterBills(dspMonthlyIncome - expense);
-    // setTotalBills(total);
+      updateDspBalanceAfterBills(dspMonthlyIncome - expense);
+    }   
   };
 
   return (
