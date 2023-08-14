@@ -6,6 +6,7 @@ import MainIncome from "./MainIncome";
 import BillsExpense from "./BillsExpense";
 import HouseHoldExpenses from "./HouseHoldExpenses";
 import Savings from "./Savings";
+import EntertainmentTravelExpense from "./EntertainmentTravelExpenses"
 import Footer from "./Footer";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
   const [dspBalanceAfterBills, setDspBalanceAfterBills] = useState("");
   const [moneyLeft, setMoneyLeft] = useState("");
   const [moneyLeftSavings, setMoneyLeftSavings] = useState("");
+  
 
   // Callback function to update displayedMonthlyIncome in the App component
   const updateDspMonthlyIncome = (income) => {
@@ -24,7 +26,6 @@ export default function App() {
     setDspBalanceAfterBills(parseInt(totalBillsAdded));
   };
 
-  // Callback to update balance after bills
 
   return (
     <div>
@@ -52,9 +53,8 @@ export default function App() {
         setMoneyLeftSavings={setMoneyLeftSavings}
       />
 
-      {/* <EntertainmentExpense /> */}
-
-      {/* <TravelExpense /> */}
+      <EntertainmentTravelExpense moneyLeftSavings={moneyLeftSavings}
+    />     
 
       <Footer />
     </div>

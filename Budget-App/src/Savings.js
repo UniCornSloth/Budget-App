@@ -4,6 +4,7 @@ export default function Savings({ moneyLeft, setMoneyLeftSavings }) {
   const [savings, setSavings] = useState(0);
   const [deductSavings, seDeductSavings] = useState(0);
   const [displayedTotalSavings, setDisplayedSavings] = useState(0);
+  
 
   // Function adding entered savings to the total savings display
   const handleAddSavings = () => {
